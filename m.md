@@ -1,30 +1,33 @@
-sequenceDiagram
-```mermaid
-sequenceDiagram
-    participant browser
-    participant server
+graph TD;
+    A[User types text in the input field] --> B[User clicks the "Save" button];
+    
+    B --> C[JavaScript captures the event];
+    C --> D[JavaScript sends a POST request to the server];
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
-    activate server
-    server-->>browser: HTML document
-    deactivate server
+    D -->|POST /new_note| E[Server receives the note and saves it in the database];
+    E --> F[Server responds with confirmation];
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
-    activate server
-    server-->>browser: the css file
-    deactivate server
+    F --> G[Browser receives the response];
+    G --> H[JavaScript updates the note list on the page];
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
-    activate server
-    server-->>browser: the JavaScript file
-    deactivate server
+    H --> I[The new note appears in the interface];
 
-    Note right of browser: The browser starts executing the JavaScript code that fetches the JSON from the server
+    %% Additional Notes
+    subgraph "Operations in the Browser"
+        A;
+        B;
+        C;
+        G;
+        H;
+        I;
+    end
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
-    activate server
-    server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
-    deactivate server
+    subgraph "Operations in the Server"
+        D;
+        E;
+        F;
+    end
+
 
     Note right of browser: The browser executes the callback function that renders the notes
 
