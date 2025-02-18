@@ -1,6 +1,6 @@
 ```mermaid
 graph TD;
-    A[User types text in the input field] --> B[User clicks the "Save" button];
+    A[User types text in the input field] --> B[User clicks the 'Save' button];
     
     B --> C[JavaScript captures the event];
     C --> D[JavaScript sends a POST request to the server];
@@ -24,9 +24,7 @@ graph TD;
     end
 
     subgraph "Operations in the Server"
-     
-
-
-
-    Note right of browser: The browser executes the callback function that renders the notes
-
+        D;
+        E;
+        F;
+    end
