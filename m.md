@@ -28,3 +28,41 @@ graph TD;
         E;
         F;
     end
+
+
+
+
+```mermaid
+graph TD;
+    A[User navigates to the SPA page] --> B[Browser requests HTML from server];
+    B -->|GET /spa| C[Server responds with HTML];
+
+    C --> D[Browser parses HTML and requests CSS & JavaScript];
+    D -->|GET /main.css| E[Server sends CSS file];
+    D -->|GET /spa.js| F[Server sends JavaScript file];
+
+    F --> G[JavaScript executes in the browser];
+    G --> H[JavaScript sends GET request for existing notes];
+
+    H -->|GET /data.json| I[Server responds with saved notes in JSON format];
+    I --> J[JavaScript processes JSON and updates the UI];
+
+    J --> K[User sees the list of notes and can interact];
+
+    %% Grouping browser and server operations
+    subgraph "Operations in the Browser"
+        A;
+        C;
+        D;
+        G;
+        H;
+        J;
+        K;
+    end
+
+    subgraph "Operations in the Server"
+        B;
+        E;
+        F;
+        I;
+    end
