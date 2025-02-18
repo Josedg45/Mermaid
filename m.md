@@ -1,3 +1,4 @@
+```mermaid
 graph TD;
     A[User types text in the input field] --> B[User clicks the "Save" button];
     
@@ -23,10 +24,8 @@ graph TD;
     end
 
     subgraph "Operations in the Server"
-        D;
-        E;
-        F;
-    end
+     
+
 
 
     Note right of browser: The browser executes the callback function that renders the notes
